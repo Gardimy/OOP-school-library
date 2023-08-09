@@ -1,6 +1,6 @@
 <br>
 <div align='center'>
-	<h1>own Enumerable</h1>
+	<h1>OOP school library</h1>
   </div>
 <a name="readme-top"></a>
 
@@ -19,9 +19,9 @@
 - [📝 License](#license)
 
 
-# 📖own Enumerable <a name="about-project"></a>
+# 📖OOP school library <a name="about-project"></a>
 
-**own Enumerable** In this project, my coding partner and I use a module inside our class. For this we create a class MyList and a module MyEnumerable. Our module MyEnumerable implement a subset of the functionality of Enumerable.
+**OOP school library** In this project, I start building my school library app. In this initial step, I implement the classes to represent students and teachers.
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
@@ -35,8 +35,9 @@
 
 ### Key Features <a name="key-features"></a>
 
-- Use Ruby syntax for basic programming operations.
-- Apply Ruby best practices and language style guides in code
+- OOP school library: decorate a class
+- OOP school library: set up associations
+- OOP school library: add basic UI
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -55,7 +56,7 @@ The live demo will be availabe soon
   https://git-scm.com/downloads and install it).
 - Step 2: Once you have installed git you can clone this project using the command below:
   ```
-  git clone https://github.com/Gardimy/Our-enumerable
+  git clone https://github.com/Gardimy/OOP-school-library
   ```
 - Step 3: Once you have cloned this repo navigate to the folder that contains
   the repository.
@@ -66,24 +67,24 @@ The live demo will be availabe soon
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-To get a local copy up and running cloning this repo `https://github.com/Gardimy/Our-enumerable`.
+To get a local copy up and running cloning this repo `https://github.com/Gardimy/OOP-school-library`.
 
 ### Prerequisites
 
 There are no known prerequisites to run this project.
 If you encounter any issues trying to run it, please feel free to
-[open a ticket](https://github.com/Gardimy/Our-enumerable/issues) to let me know and i will work on it to the best
+[open a ticket](https://github.com/Gardimy/OOP-school-library/issues) to let me know and i will work on it to the best
 of my abilities
 
 ### Setup
 
 Clone this repository to your desired folder:
 
-`git clone https://github.com/Gardimy/Our-enumerable`
+`git clone https://github.com/Gardimy/OOP-school-library`
 
 or
 
-`git clone https://github.com/Gardimy/Our-enumerable` <-- _Only if you have [SSH keys configured](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) on your GitHub account_.
+`git clone https://github.com/Gardimy/OOP-school-library` <-- _Only if you have [SSH keys configured](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) on your GitHub account_.
 
 ### Usage
 
@@ -114,7 +115,7 @@ To run the project:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/Gardimy/Our-enumerable/issues).
+Feel free to check the [issues page](https://github.com/Gardimy/OOP-school-library/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
