@@ -34,8 +34,6 @@
 </details>
 
 ### Key Features <a name="key-features"></a>
-
-- OOP school library: decorate a class
 - OOP school library: set up associations
 - OOP school library: add basic UI
 
