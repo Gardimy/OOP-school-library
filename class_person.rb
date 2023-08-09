@@ -1,12 +1,8 @@
-class Person < Nameable
-  attr_accessor :name
+class Person
+  attr_accessor :name, :rentals
 
   def initialize(name)
-    super()
     @name = name
-  end
-
-  def correct_name
-    @name
+    @rentals = []
   end
 end
