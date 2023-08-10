@@ -41,39 +41,56 @@
 
 <!-- GETTING STARTED -->
 
-## 💻 Getting Started <a name="getting-started"></a>
+## Getting Started
 
-To get a local copy up and running cloning this repo `https://github.com/Gardimy/OOP-school-library`.
+To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-There are no known prerequisites to run this project.
-If you encounter any issues trying to run it, please feel free to
-[open a ticket](https://github.com/Gardimy/OOP-school-library/issues) to let me know and i will work on it to the best
-of my abilities
+> You need the following tools be installed in your computer:
+
+> - [Git](https://www.linode.com/docs/guides/how-to-install-git-on-linux-mac-and-windows/)
+> - [Ruby](https://github.com/microverseinc/curriculum-ruby/blob/main/simple-ruby/articles/ruby_installation_instructions.md)
+> - IDE
+> - Etc
 
 ### Setup
 
 Clone this repository to your desired folder:
 
-`git clone https://github.com/Gardimy/OOP-school-library`
+```sh
+  cd my-prefered-folder
+  
+  git clone https://github.com/Gardimy/OOP-school-library.git
 
-or
+```
 
-`git clone https://github.com/Gardimy/OOP-school-library` <-- _Only if you have [SSH keys configured](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) on your GitHub account_.
+### Install
+
+Install this project with:
+
+```sh
+  cd OOP-school-library
+  
+  bundle install
+```
 
 ### Usage
 
-To run the project:
-
-- Method 1:
+To run the project, execute the following command:
 
 ```sh
-  cd PATH_TO_CLONE
+  ruby main.rb
 ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+### Run tests
 
+To run tests, run the following command:
+
+```sh
+  rspec spec/
+```
+...
 <!-- AUTHORS -->
 
 ## 👥 Authors <a name="authors"></a>
