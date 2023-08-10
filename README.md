@@ -39,13 +39,6 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- LIVE DEMO -->
-
-## 🚀 You can check the Live Demo here<a name="live-demo"></a>
-
-The live demo will be availabe soon
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- GETTING STARTED -->
 
 ## 💻 Getting Started <a name="getting-started"></a>
@@ -104,6 +97,12 @@ To run the project:
 - GitHub: [@Gardimy](https://github.com/Gardimy)
 - Twitter: [@gardyelontiga45](https://twitter.com/gardyelontiga45)
 - LinkedIn: [Gardimy charles](https://www.linkedin.com/in/gardimy-charles)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🔭 Future Features <a name="future-features"></a>
+
+- OOP school library: add basic UI
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
