@@ -12,10 +12,7 @@ class Student < Person
   def classroom=(classroom)
     return if @classroom == classroom
 
-    if @classroom
-      @classroom.students.delete(self)
-    end
-
+    @classroom&.students&.delete(self)
     @classroom = classroom
     classroom.students.push(self) unless classroom.students.include?(self)
   end
