@@ -21,7 +21,7 @@
 
 # 📖OOP school library <a name="about-project"></a>
 
-**OOP school library** In this project, I start building my school library app. I Use the Decorator design pattern to correct the names of people.
+**OOP school library** In this project, I start building my school library app. I Use the Decorator design pattern to correct the names of people.I also finish creating the remaining classes for our school library and create the associations between them.
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
@@ -34,70 +34,63 @@
 </details>
 
 ### Key Features <a name="key-features"></a>
-
-- OOP school library: decorate a class
 - OOP school library: set up associations
 - OOP school library: add basic UI
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- LIVE DEMO -->
-
-## 🚀 You can check the Live Demo here<a name="live-demo"></a>
-
-The live demo will be availabe soon
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- GETTING STARTED -->
 
-## 💻 Getting Started <a name="getting-started"></a>
+## Getting Started
 
-- Step 1: Clone this project using this git comand "git clone", (if you don't have git installed please visit
-  https://git-scm.com/downloads and install it).
-- Step 2: Once you have installed git you can clone this project using the command below:
-  ```
-  git clone https://github.com/Gardimy/OOP-school-library
-  ```
-- Step 3: Once you have cloned this repo navigate to the folder that contains
-  the repository.
-- Step 4: If you want to watch the html file open it with your favorite web browser(This project MUST be opened from VS Code for full functionality).
-- Step 5: If you want to edit this project open it with your favorite text editor.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## 💻 Getting Started <a name="getting-started"></a>
-
-To get a local copy up and running cloning this repo `https://github.com/Gardimy/OOP-school-library`.
+To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-There are no known prerequisites to run this project.
-If you encounter any issues trying to run it, please feel free to
-[open a ticket](https://github.com/Gardimy/OOP-school-library/issues) to let me know and i will work on it to the best
-of my abilities
+> You need the following tools be installed in your computer:
+
+> - [Git](https://www.linode.com/docs/guides/how-to-install-git-on-linux-mac-and-windows/)
+> - [Ruby](https://github.com/microverseinc/curriculum-ruby/blob/main/simple-ruby/articles/ruby_installation_instructions.md)
+> - IDE
+> - Etc
 
 ### Setup
 
 Clone this repository to your desired folder:
 
-`git clone https://github.com/Gardimy/OOP-school-library`
+```sh
+  cd my-prefered-folder
+  
+  git clone https://github.com/Gardimy/OOP-school-library.git
 
-or
+```
 
-`git clone https://github.com/Gardimy/OOP-school-library` <-- _Only if you have [SSH keys configured](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) on your GitHub account_.
+### Install
+
+Install this project with:
+
+```sh
+  cd OOP-school-library
+  
+  bundle install
+```
 
 ### Usage
 
-To run the project:
-
-- Method 1:
+To run the project, execute the following command:
 
 ```sh
-  cd PATH_TO_CLONE
+  ruby main.rb
 ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+### Run tests
 
+To run tests, run the following command:
+
+```sh
+  rspec spec/
+```
+...
 <!-- AUTHORS -->
 
 ## 👥 Authors <a name="authors"></a>
@@ -106,6 +99,12 @@ To run the project:
 - GitHub: [@Gardimy](https://github.com/Gardimy)
 - Twitter: [@gardyelontiga45](https://twitter.com/gardyelontiga45)
 - LinkedIn: [Gardimy charles](https://www.linkedin.com/in/gardimy-charles)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🔭 Future Features <a name="future-features"></a>
+
+- OOP school library: add basic UI
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
