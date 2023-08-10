@@ -50,21 +50,6 @@ The live demo will be availabe soon
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-- Step 1: Clone this project using this git comand "git clone", (if you don't have git installed please visit
-  https://git-scm.com/downloads and install it).
-- Step 2: Once you have installed git you can clone this project using the command below:
-  ```
-  git clone https://github.com/Gardimy/OOP-school-library
-  ```
-- Step 3: Once you have cloned this repo navigate to the folder that contains
-  the repository.
-- Step 4: If you want to watch the html file open it with your favorite web browser(This project MUST be opened from VS Code for full functionality).
-- Step 5: If you want to edit this project open it with your favorite text editor.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## 💻 Getting Started <a name="getting-started"></a>
-
 To get a local copy up and running cloning this repo `https://github.com/Gardimy/OOP-school-library`.
 
 ### Prerequisites
