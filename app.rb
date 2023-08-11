@@ -1,68 +1,138 @@
-# Load necessary files
-require_relative 'class_book'
 require_relative 'class_person'
+require_relative 'class_book'
+require_relative 'class_student'
+require_relative 'class_teacher'
 require_relative 'class_rental'
 
-# Initialize empty arrays to store books and people
-books = []
-people = []
-
-# Method to list all books
-def list_books(books)
-  puts "List of Books:"
-  books.each do |book|
-    puts "Title: #{book.title}, Author: #{book.author}"
+class App
+  def initialize
+    @books = []
+    @people = []
+    @rentals = []
   end
-  puts "\n"
-end
 
-# Method to list all people
-def list_people(people)
-  puts "List of People:"
-  people.each do |person|
-    puts "ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
+  def list_books
+    @books.each_with_index do |book, index|
+      puts "#{index + 1}. Title: #{book.title}, Author: #{book.author}"
+    end
   end
-  puts "\n"
-end
 
-# Method to create a person
-def create_person(age, name, parent_permission)
-  person = Person.new(age, name, parent_permission: parent_permission)
-  people << person
-  puts "Person created with ID: #{person.id}\n\n"
-end
-
-# Method to create a book
-def create_book(title, author)
-  book = Book.new(title, author)
-  books << book
-  puts "Book created with title: #{book.title}\n\n"
-end
-
-# Method to create a rental
-def create_rental(person_id, book_title, rental_date)
-  person = people.find { |p| p.id == person_id }
-  book = books.find { |b| b.title == book_title }
-
-  if person && book
-    rental = person.add_rental(book, rental_date)
-    puts "Rental created for person #{person.name} with book #{book.title} on #{rental.date}\n\n"
-  else
-    puts "Person or book not found.\n\n"
+  def list_people
+    @people.each_with_index do |person, index|
+      puts "#{index + 1}. Name: #{person.name}, Age: #{person.age}"
+    end
   end
-end
 
-# Method to list all rentals for a given person id
-def list_rentals_for_person(person_id)
-  person = people.find { |p| p.id == person_id }
-  
-  if person
+  def create_person
+    puts 'Enter person type (student/teacher):'
+    person_type = gets.chomp.downcase
+
+    puts 'Enter age:'
+    age = gets.chomp.to_i
+
+    if person_type == 'student'
+      puts 'Enter classroom:'
+      classroom = gets.chomp
+      person = Student.new(age, classroom)
+    elsif person_type == 'teacher'
+      puts 'Enter specialization:'
+      specialization = gets.chomp
+      person = Teacher.new(age, specialization)
+    else
+      puts 'Invalid person type.'
+      return
+    end
+
+    @people.push(person)
+    puts 'Person created!'
+  end
+
+  def create_book
+    puts 'Enter title:'
+    title = gets.chomp
+
+    puts 'Enter author:'
+    author = gets.chomp
+
+    book = Book.new(title, author)
+    @books.push(book)
+    puts 'Book created!'
+  end
+
+  def create_rental
+    puts 'Select a person by their index:'
+    list_people
+    person_index = gets.chomp.to_i - 1
+
+    puts 'Select a book by its index:'
+    list_books
+    book_index = gets.chomp.to_i - 1
+
+    puts 'Enter rental date (YYYY-MM-DD):'
+    date = gets.chomp
+
+    rental = @people[person_index].add_rental(@books[book_index], date)
+    @rentals.push(rental)
+    puts 'Rental created!'
+  end
+
+  def list_rentals_for_person
+    puts 'Select a person by their index:'
+    list_people
+    person_index = gets.chomp.to_i - 1
+
+    person = @people[person_index]
     puts "Rentals for #{person.name}:"
     person.rentals.each do |rental|
-      puts "Book: #{rental.book.title}, Date: #{rental.date}"
+      puts "Date: #{rental.date}, Book: #{rental.book.title}"
     end
-    puts "\n"
-  else
-    puts "Person not found.\n\n"
+  end
+
+  def display_options
+    puts 'Options:'
+    puts '1. List all books'
+    puts '2. List all people'
+    puts '3. Create a person'
+    puts '4. Create a book'
+    puts '5. Create a rental'
+    puts '6. List rentals for a person'
+    puts '7. Quit'
+  end
+
+  def process(choice)
+    case choice
+    when 1
+      list_books
+    when 2
+      list_people
+    when 3
+      create_person
+    when 4
+      create_book
+    when 5
+      create_rental
+    when 6
+      list_rentals_for_person
+    when 7
+      puts 'Goodbye!'
+      return :quit
+    else
+      puts 'Invalid choice. Please select a valid option.'
+    end
+    :continue
+  end
+
+  def run
+    loop do
+      display_options
+      print 'Select an option: '
+      choice = gets.chomp.to_i
+
+      result = process(choice)
+      break if result == :quit
+    end
   end
 end
+
+app = App.new
+app.run
