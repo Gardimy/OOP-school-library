@@ -1,3 +1,5 @@
+require_relative 'app'
+
 # Method to present the user with options
 def main_menu
   puts "Library Management System"
