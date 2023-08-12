@@ -126,7 +126,7 @@ class App
       print 'Select an option: '
       choice = gets.chomp.to_i
 
-      result = process_choice(choice)
+      result = process(choice)
       break if result == :quit
     end
   end
