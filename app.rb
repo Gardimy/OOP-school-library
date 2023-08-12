@@ -1,6 +1,7 @@
 require_relative 'class_person'
 require_relative 'class_book'
 require_relative 'class_student'
+require_relative 'class_classroom'
 require_relative 'class_teacher'
 require_relative 'class_rental'
 
@@ -24,28 +25,29 @@ class App
   end
 
   def create_person
-    puts 'Enter person type (student/teacher):'
-    person_type = gets.chomp.downcase
-
-    puts 'Enter age:'
-    age = gets.chomp.to_i
-
-    if person_type == 'student'
-      puts 'Enter classroom:'
-      classroom = gets.chomp
-      person = Student.new(age, classroom)
-    elsif person_type == 'teacher'
-      puts 'Enter specialization:'
-      specialization = gets.chomp
-      person = Teacher.new(age, specialization)
-    else
-      puts 'Invalid person type.'
-      return
-    end
-
-    @people.push(person)
-    puts 'Person created!'
-  end
+	puts 'Enter person type (student/teacher):'
+	person_type = gets.chomp.downcase
+  
+	puts 'Enter age:'
+	age = gets.chomp.to_i
+  
+	if person_type == 'student'
+	  puts 'Enter classroom:'
+	  classroom_name = gets.chomp
+	  classroom = Classroom.new(classroom_name)  # Create a Classroom instance
+	  person = Student.new(age, classroom)
+	elsif person_type == 'teacher'
+	  puts 'Enter specialization:'
+	  specialization = gets.chomp
+	  person = Teacher.new(age, specialization)
+	else
+	  puts 'Invalid person type.'
+	  return
+	end
+  
+	@people.push(person)
+	puts 'Person created!'
+  end  
 
   def create_book
     puts 'Enter title:'
@@ -113,6 +115,8 @@ class App
       create_rental
     when 6
       list_rentals_for_person
+	when 7
+	  puts 'Goodbye!'
       return :quit
     else
       puts 'Invalid choice. Please select a valid option.'
