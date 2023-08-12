@@ -113,8 +113,6 @@ class App
       create_rental
     when 6
       list_rentals_for_person
-    when 7
-      puts 'Goodbye!'
       return :quit
     else
       puts 'Invalid choice. Please select a valid option.'
@@ -128,7 +126,7 @@ class App
       print 'Select an option: '
       choice = gets.chomp.to_i
 
-      result = process(choice)
+      result = process_choice(choice)
       break if result == :quit
     end
   end
