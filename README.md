@@ -21,7 +21,8 @@
 
 # 📖OOP school library <a name="about-project"></a>
 
-**OOP school library** In this project, I start building my school library app. I Use the Decorator design pattern to correct the names of people.I also finish creating the remaining classes for our school library and create the associations between them.
+**OOP school library** In this project, I create a form of UI for your school library app. This way it can be invoked as an executable and not something you use in IRB exclusively.
+
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
