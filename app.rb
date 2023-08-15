@@ -28,25 +28,45 @@ class App
     puts 'Enter person type (student/teacher):'
     person_type = gets.chomp.downcase
 
+    case person_type
+    when 'student'
+      create_student
+    when 'teacher'
+      create_teacher
+    else
+      puts 'Invalid person type.'
+    end
+  end
+
+  def create_student
+    puts 'Enter name:'
+    name = gets.chomp
+
     puts 'Enter age:'
     age = gets.chomp.to_i
 
-    if person_type == 'student'
-      puts 'Enter classroom:'
-      classroom_name = gets.chomp
-      classroom = Classroom.new(classroom_name)
-      person = Student.new(age, classroom)
-    elsif person_type == 'teacher'
-      puts 'Enter specialization:'
-      specialization = gets.chomp
-      person = Teacher.new(age, specialization)
-    else
-      puts 'Invalid person type.'
-      return
-    end
+    puts 'Enter classroom:'
+    classroom_name = gets.chomp
+    classroom = Classroom.new(classroom_name)
 
-    @people.push(person)
-    puts 'Person created!'
+    student = Student.new(age, classroom, name)
+    @people.push(student)
+    puts 'Student created!'
+  end
+
+  def create_teacher
+    puts 'Enter name:'
+    name = gets.chomp
+
+    puts 'Enter age:'
+    age = gets.chomp.to_i
+
+    puts 'Enter specialization:'
+    specialization = gets.chomp
+
+    teacher = Teacher.new(age, specialization, name)
+    @people.push(teacher)
+    puts 'Teacher created!'
   end
 
   def create_book

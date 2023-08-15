@@ -21,7 +21,7 @@
 
 # 📖OOP school library <a name="about-project"></a>
 
-**OOP school library** In this project, I create a form of UI for your school library app. This way it can be invoked as an executable and not something you use in IRB exclusively.
+**OOP school library** In this project, the main focus is on refactoring the existing codebase to improve its maintainability, readability, and adherence to best practices.
 
 ## 🛠 Built With <a name="built-with"></a>
 
