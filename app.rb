@@ -4,12 +4,15 @@ require_relative 'class_student'
 require_relative 'class_classroom'
 require_relative 'class_teacher'
 require_relative 'class_rental'
+require 'json'
 
 class App
   def initialize
     @books = []
     @people = []
     @rentals = []
+
+	load_data
   end
 
   def list_books
@@ -142,14 +145,31 @@ class App
     :continue
   end
 
-  def run
-    loop do
-      display_options
-      print 'Select an option: '
-      choice = gets.chomp.to_i
+  def save_data
+    File.open('books.json', 'w') { |f| f.write(@books.to_json) }
+    File.open('people.json', 'w') { |f| f.write(@people.to_json) }
+    File.open('rentals.json', 'w') { |f| f.write(@rentals.to_json) }
+  end
 
-      result = process(choice)
-      break if result == :quit
+  def load_data
+    @books = JSON.parse(File.read('books.json')) if File.exist?('books.json')
+    @people = JSON.parse(File.read('people.json')) if File.exist?('people.json')
+    @rentals = JSON.parse(File.read('rentals.json')) if File.exist?('rentals.json')
+  end
+
+  def run
+    begin
+      loop do
+        display_options
+        print 'Select an option: '
+        choice = gets.chomp.to_i
+
+        result = process(choice)
+        save_data  # Save data to JSON files after each action
+        break if result == :quit
+      end
+    ensure
+      save_data  # Save data before exiting the app
     end
   end
 end
