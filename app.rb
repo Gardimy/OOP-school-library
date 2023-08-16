@@ -158,14 +158,14 @@ class App
   end
 
   def run
-      loop do
-        display_options
-        print 'Select an option: '
-        choice = gets.chomp.to_i
+    loop do
+      display_options
+      print 'Select an option: '
+      choice = gets.chomp.to_i
 
-        result = process(choice)
-        save_data
-        break if result == :quit
+      result = process(choice)
+      save_data
+      break if result == :quit
     end
   end
 end
