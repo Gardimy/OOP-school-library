@@ -158,7 +158,6 @@ class App
   end
 
   def run
-    begin
       loop do
         display_options
         print 'Select an option: '
@@ -167,9 +166,6 @@ class App
         result = process(choice)
         save_data
         break if result == :quit
-      end
-    ensure
-      save_data
     end
   end
 end
