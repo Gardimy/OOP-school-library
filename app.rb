@@ -12,7 +12,7 @@ class App
     @people = []
     @rentals = []
 
-	load_data
+    load_data
   end
 
   def list_books
@@ -146,9 +146,9 @@ class App
   end
 
   def save_data
-    File.open('books.json', 'w') { |f| f.write(@books.to_json) }
-    File.open('people.json', 'w') { |f| f.write(@people.to_json) }
-    File.open('rentals.json', 'w') { |f| f.write(@rentals.to_json) }
+    File.write('books.json', @books.to_json)
+    File.write('people.json', @people.to_json)
+    File.write('rentals.json', @rentals.to_json)
   end
 
   def load_data
@@ -165,11 +165,11 @@ class App
         choice = gets.chomp.to_i
 
         result = process(choice)
-        save_data  # Save data to JSON files after each action
+        save_data
         break if result == :quit
       end
     ensure
-      save_data  # Save data before exiting the app
+      save_data
     end
   end
 end
