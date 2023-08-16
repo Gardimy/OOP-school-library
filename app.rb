@@ -138,7 +138,8 @@ class App
       create_rental
     when 6
       list_rentals_for_person
-      return :quit
+    when 7
+      return :quit # Exit the loop
     else
       puts 'Invalid choice. Please select a valid option.'
     end
@@ -146,57 +147,73 @@ class App
   end
 
   def save_data
-	books_data = @books.map { |book| { title: book.title, author: book.author } }
-	people_data = @people.map do |person|
-	  data = { name: person.name, age: person.age }
-	  if person.is_a?(Student)
-		data[:type] = 'student'
-		data[:classroom] = person.classroom.label
-	  elsif person.is_a?(Teacher)
-		data[:type] = 'teacher'
-		data[:specialization] = person.specialization
-	  end
-	  data
-	end
-	rentals_data = @rentals.map { |rental| { person_index: @people.index(rental.person), book_index: @books.index(rental.book), date: rental.date } }
-  
-	File.write('books.json', books_data.to_json)
-	File.write('people.json', people_data.to_json)
-	File.write('rentals.json', rentals_data.to_json)
+    books_data = @books.map { |book| { title: book.title, author: book.author } }
+    people_data = @people.map do |person|
+      data = { name: person.name, age: person.age }
+      if person.is_a?(Student)
+        data[:type] = 'student'
+        data[:classroom] = person.classroom.label
+      elsif person.is_a?(Teacher)
+        data[:type] = 'teacher'
+        data[:specialization] = person.specialization
+      end
+      data
+    end
+    rentals_data = @rentals.map do |rental|
+      {
+        person_index: @people.index(rental.person),
+        book_index: @books.index(rental.book),
+        date: rental.date
+      }
+    end
+
+    File.write('books.json', books_data.to_json)
+    File.write('people.json', people_data.to_json)
+    File.write('rentals.json', rentals_data.to_json)
   end
-  
+
   def load_data
-	if File.exist?('books.json')
-	  books_data = JSON.parse(File.read('books.json'))
-	  @books = books_data.map { |data| Book.new(data['title'], data['author']) }
-	end
-  
-	if File.exist?('people.json')
-	  people_data = JSON.parse(File.read('people.json'))
-	  people_data.each do |data|
-		if data['type'] == 'student'
-		  classroom = @classrooms.find { |c| c.label == data['classroom'] }
-		  student = Student.new(data['age'], classroom, data['name'])
-		  @people.push(student)
-		elsif data['type'] == 'teacher'
-		  teacher = Teacher.new(data['age'], data['specialization'], data['name'])
-		  @people.push(teacher)
-		end
-	  end
-	end
-  
-	if File.exist?('rentals.json')
-	  rentals_data = JSON.parse(File.read('rentals.json'))
-	  rentals_data.each do |data|
-		person = @people[data['person_index']]
-		book = @books[data['book_index']]
-		rental = person.add_rental(book, data['date'])
-		@rentals.push(rental)
-	  end
-	end
+    load_books
+    load_people
+    load_rentals
   rescue Errno::ENOENT => e
-	puts "Error loading data: #{e.message}"
-  end  
+    puts "Error loading data: #{e.message}"
+  end
+
+  def load_books
+    return unless File.exist?('books.json')
+
+    books_data = JSON.parse(File.read('books.json'))
+    @books = books_data.map { |data| Book.new(data['title'], data['author']) }
+  end
+
+  def load_people
+    return unless File.exist?('people.json')
+
+    people_data = JSON.parse(File.read('people.json'))
+    people_data.each do |data|
+      if data['type'] == 'student'
+        classroom = Classroom.new(data['classroom'])
+        student = Student.new(data['age'], classroom, data['name'])
+        @people.push(student)
+      elsif data['type'] == 'teacher'
+        teacher = Teacher.new(data['age'], data['specialization'], data['name'])
+        @people.push(teacher)
+      end
+    end
+  end
+
+  def load_rentals
+    return unless File.exist?('rentals.json')
+
+    rentals_data = JSON.parse(File.read('rentals.json'))
+    rentals_data.each do |data|
+      person = @people[data['person_index']]
+      book = @books[data['book_index']]
+      rental = person.add_rental(book, data['date'])
+      @rentals.push(rental)
+    end
+  end
 
   def run
     loop do
@@ -205,9 +222,11 @@ class App
       choice = gets.chomp.to_i
 
       result = process(choice)
+      break if result == :quit # Exit the loop
       save_data
-      break if result == :quit
     end
+
+    puts 'Exiting the application. Goodbye!'
   end
 end
 
