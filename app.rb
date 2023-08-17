@@ -4,12 +4,15 @@ require_relative 'class_student'
 require_relative 'class_classroom'
 require_relative 'class_teacher'
 require_relative 'class_rental'
+require_relative 'saveload_data'
 
 class App
+  include SaveLoadData
+
   def initialize
-    @books = []
-    @people = []
-    @rentals = []
+    @books = load_books
+    @people = load_people(Classroom)
+    @rentals = load_rentals(@people, @books)
   end
 
   def list_books
@@ -30,55 +33,16 @@ class App
 
     case person_type
     when 'student'
-      create_student
+      Student.create_student(@people)
     when 'teacher'
-      create_teacher
+      Teacher.create_teacher(@people)
     else
       puts 'Invalid person type.'
     end
   end
 
-  def create_student
-    puts 'Enter name:'
-    name = gets.chomp
-
-    puts 'Enter age:'
-    age = gets.chomp.to_i
-
-    puts 'Enter classroom:'
-    classroom_name = gets.chomp
-    classroom = Classroom.new(classroom_name)
-
-    student = Student.new(age, classroom, name)
-    @people.push(student)
-    puts 'Student created!'
-  end
-
-  def create_teacher
-    puts 'Enter name:'
-    name = gets.chomp
-
-    puts 'Enter age:'
-    age = gets.chomp.to_i
-
-    puts 'Enter specialization:'
-    specialization = gets.chomp
-
-    teacher = Teacher.new(age, specialization, name)
-    @people.push(teacher)
-    puts 'Teacher created!'
-  end
-
   def create_book
-    puts 'Enter title:'
-    title = gets.chomp
-
-    puts 'Enter author:'
-    author = gets.chomp
-
-    book = Book.new(title, author)
-    @books.push(book)
-    puts 'Book created!'
+    Book.create_book(@books)
   end
 
   def create_rental
@@ -121,25 +85,21 @@ class App
     puts '7. Exit'
   end
 
+  def valid_choice?(choice)
+    (1..7).include?(choice)
+  end
+
   def process(choice)
     case choice
-    when 1
-      list_books
-    when 2
-      list_people
-    when 3
-      create_person
-    when 4
-      create_book
-    when 5
-      create_rental
-    when 6
-      list_rentals_for_person
-      return :quit
+    when 1 then list_books
+    when 2 then list_people
+    when 3 then create_person
+    when 4 then create_book
+    when 5 then create_rental
+    when 6 then list_rentals_for_person
     else
-      puts 'Invalid choice. Please select a valid option.'
+      puts 'Invalid choice.'
     end
-    :continue
   end
 
   def run
@@ -148,9 +108,21 @@ class App
       print 'Select an option: '
       choice = gets.chomp.to_i
 
-      result = process(choice)
-      break if result == :quit
+      if valid_choice?(choice)
+        process(choice)
+
+        # Save data after each action
+        save_books(@books)
+        save_people(@people)
+        save_rentals(@people, @books, @rentals)
+
+        break if choice == 7
+      else
+        puts 'Invalid choice. Please select a valid option.'
+      end
     end
+
+    puts 'Exiting the application. Goodbye!'
   end
 end
 
