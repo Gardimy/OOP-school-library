@@ -33,55 +33,16 @@ class App
 
     case person_type
     when 'student'
-      create_student
+      Student.create_student(@people)
     when 'teacher'
-      create_teacher
+      Teacher.create_teacher(@people)
     else
       puts 'Invalid person type.'
     end
   end
 
-  def create_student
-    puts 'Enter name:'
-    name = gets.chomp
-
-    puts 'Enter age:'
-    age = gets.chomp.to_i
-
-    puts 'Enter classroom:'
-    classroom_name = gets.chomp
-    classroom = Classroom.new(classroom_name)
-
-    student = Student.new(age, classroom, name)
-    @people.push(student)
-    puts 'Student created!'
-  end
-
-  def create_teacher
-    puts 'Enter name:'
-    name = gets.chomp
-
-    puts 'Enter age:'
-    age = gets.chomp.to_i
-
-    puts 'Enter specialization:'
-    specialization = gets.chomp
-
-    teacher = Teacher.new(age, specialization, name)
-    @people.push(teacher)
-    puts 'Teacher created!'
-  end
-
   def create_book
-    puts 'Enter title:'
-    title = gets.chomp
-
-    puts 'Enter author:'
-    author = gets.chomp
-
-    book = Book.new(title, author)
-    @books.push(book)
-    puts 'Book created!'
+    Book.create_book(@books)
   end
 
   def create_rental

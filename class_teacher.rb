@@ -11,4 +11,19 @@ class Teacher < Person
   def can_use_services?
     true
   end
+
+  def self.create_teacher(people)
+    puts 'Enter name:'
+    name = gets.chomp
+
+    puts 'Enter age:'
+    age = gets.chomp.to_i
+
+    puts 'Enter specialization:'
+    specialization = gets.chomp
+
+    teacher = Teacher.new(age, specialization, name)
+    people.push(teacher)
+    puts 'Teacher created!'
+  end
 end

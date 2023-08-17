@@ -10,4 +10,20 @@ class Student < Person
   def play_hooky
     '¯\\(ツ)/¯'
   end
+
+  def self.create_student(people)
+    puts 'Enter name:'
+    name = gets.chomp
+
+    puts 'Enter age:'
+    age = gets.chomp.to_i
+
+    puts 'Enter classroom:'
+    classroom_name = gets.chomp
+    classroom = Classroom.new(classroom_name)
+
+    student = Student.new(age, classroom, name)
+    people.push(student)
+    puts 'Student created!'
+  end
 end
