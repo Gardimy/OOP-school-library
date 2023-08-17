@@ -4,15 +4,15 @@ require_relative 'class_student'
 require_relative 'class_classroom'
 require_relative 'class_teacher'
 require_relative 'class_rental'
-require 'json'
+require_relative 'saveload_data'
 
 class App
-  def initialize
-    @books = []
-    @people = []
-    @rentals = []
+  include SaveLoadData
 
-    load_data
+  def initialize
+    @books = load_books
+    @people = load_people(Classroom)
+    @rentals = load_rentals(@people, @books)
   end
 
   def list_books
@@ -85,6 +85,10 @@ class App
     puts '7. Exit'
   end
 
+  def valid_choice?(choice)
+    (1..7).include?(choice)
+  end
+
   def process(choice)
     case choice
     when 1 then list_books
@@ -93,87 +97,8 @@ class App
     when 4 then create_book
     when 5 then create_rental
     when 6 then list_rentals_for_person
-    when 7 then return :quit end
-    :continue
-  end
-
-  def save_data
-    save_books
-    save_people
-    save_rentals
-  end
-
-  def save_books
-    books_data = @books.map { |book| { title: book.title, author: book.author } }
-    File.write('books.json', books_data.to_json)
-  end
-
-  def save_people
-    people_data = @people.map do |person|
-      data = { name: person.name, age: person.age }
-      if person.is_a?(Student)
-        data[:type] = 'student'
-        data[:classroom] = person.classroom.label
-      elsif person.is_a?(Teacher)
-        data[:type] = 'teacher'
-        data[:specialization] = person.specialization
-      end
-      data
-    end
-    File.write('people.json', people_data.to_json)
-  end
-
-  def save_rentals
-    rentals_data = @rentals.map do |rental|
-      {
-        person_index: @people.index(rental.person),
-        book_index: @books.index(rental.book),
-        date: rental.date
-      }
-    end
-    File.write('rentals.json', rentals_data.to_json)
-  end
-
-  def load_data
-    load_books
-    load_people
-    load_rentals
-  rescue Errno::ENOENT => e
-    puts "Error loading data: #{e.message}"
-  end
-
-  def load_books
-    return unless File.exist?('books.json')
-
-    books_data = JSON.parse(File.read('books.json'))
-    @books = books_data.map { |data| Book.new(data['title'], data['author']) }
-  end
-
-  def load_people
-    return unless File.exist?('people.json')
-
-    people_data = JSON.parse(File.read('people.json'))
-    people_data.each do |data|
-      if data['type'] == 'student'
-        classroom = Classroom.new(data['classroom'])
-        student = Student.new(data['age'], classroom, data['name'])
-        @people.push(student)
-      elsif data['type'] == 'teacher'
-        teacher = Teacher.new(data['age'], data['specialization'], data['name'])
-        @people.push(teacher)
-      end
-    end
-  end
-
-  def load_rentals
-    return unless File.exist?('rentals.json')
-
-    rentals_data = JSON.parse(File.read('rentals.json'))
-    rentals_data.each do |data|
-      person = @people[data['person_index']]
-      book = @books[data['book_index']]
-      rental = person.add_rental(book, data['date'])
-      @rentals.push(rental)
+    else
+      puts 'Invalid choice.'
     end
   end
 
@@ -183,10 +108,18 @@ class App
       print 'Select an option: '
       choice = gets.chomp.to_i
 
-      result = process(choice)
-      break if result == :quit
+      if valid_choice?(choice)
+        process(choice)
 
-      save_data
+        # Save data after each action
+        save_books(@books)
+        save_people(@people)
+        save_rentals(@people, @books, @rentals)
+
+        break if choice == 7
+      else
+        puts 'Invalid choice. Please select a valid option.'
+      end
     end
 
     puts 'Exiting the application. Goodbye!'
