@@ -21,7 +21,7 @@
 
 # 📖OOP school library <a name="about-project"></a>
 
-**OOP school library** In this project, the main focus is on refactoring the existing codebase to improve its maintainability, readability, and adherence to best practices.
+**OOP school library** In this project I add unit tests to my codebase, specifically to my classes.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -35,8 +35,8 @@
 </details>
 
 ### Key Features <a name="key-features"></a>
-- OOP school library: set up associations
-- OOP school library: add basic UI
+- Unit tests with Rspec
+- TDD project
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -105,7 +105,7 @@ To run tests, run the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- OOP school library: add basic UI
+- TDD project
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
