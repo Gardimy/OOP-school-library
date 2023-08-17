@@ -1,4 +1,4 @@
-require_relative 'class_teacher'
+require_relative '../class_teacher'
 
 RSpec.describe Teacher do
   describe '#can_use_services?' do

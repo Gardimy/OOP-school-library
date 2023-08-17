@@ -1,7 +1,7 @@
 require 'date'
-require_relative 'class_book'
-require_relative 'class_person'
-require_relative 'class_rental'
+require_relative '../class_book'
+require_relative '../class_person'
+require_relative '../class_rental'
 
 RSpec.describe Book do
   describe '#add_rental' do

@@ -1,4 +1,4 @@
-require_relative 'decorator'
+require_relative '../decorator'
 
 class Nameable
   def correct_name

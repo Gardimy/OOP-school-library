@@ -1,5 +1,5 @@
-require_relative 'class_student'
-require_relative 'class_classroom'
+require_relative '../class_student'
+require_relative '../class_classroom'
 
 RSpec.describe Student do
   describe '#play_hooky' do
