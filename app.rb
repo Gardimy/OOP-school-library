@@ -126,28 +126,28 @@ class App
 
   def process(choice)
     case choice
-    when 1
-      list_books
-    when 2
-      list_people
-    when 3
-      create_person
-    when 4
-      create_book
-    when 5
-      create_rental
-    when 6
-      list_rentals_for_person
-    when 7
-      return :quit # Exit the loop
-    else
-      puts 'Invalid choice. Please select a valid option.'
-    end
+    when 1 then list_books
+    when 2 then list_people
+    when 3 then create_person
+    when 4 then create_book
+    when 5 then create_rental
+    when 6 then list_rentals_for_person
+    when 7 then return :quit end
     :continue
   end
 
   def save_data
+    save_books
+    save_people
+    save_rentals
+  end
+
+  def save_books
     books_data = @books.map { |book| { title: book.title, author: book.author } }
+    File.write('books.json', books_data.to_json)
+  end
+
+  def save_people
     people_data = @people.map do |person|
       data = { name: person.name, age: person.age }
       if person.is_a?(Student)
@@ -159,6 +159,10 @@ class App
       end
       data
     end
+    File.write('people.json', people_data.to_json)
+  end
+
+  def save_rentals
     rentals_data = @rentals.map do |rental|
       {
         person_index: @people.index(rental.person),
@@ -166,9 +170,6 @@ class App
         date: rental.date
       }
     end
-
-    File.write('books.json', books_data.to_json)
-    File.write('people.json', people_data.to_json)
     File.write('rentals.json', rentals_data.to_json)
   end
 
@@ -222,7 +223,8 @@ class App
       choice = gets.chomp.to_i
 
       result = process(choice)
-      break if result == :quit # Exit the loop
+      break if result == :quit
+
       save_data
     end
 

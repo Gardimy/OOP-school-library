@@ -10,12 +10,4 @@ class Student < Person
   def play_hooky
     '¯\\(ツ)/¯'
   end
-
-  def classroom=(classroom)
-    return if @classroom == classroom
-
-    @classroom&.students&.delete(self)
-    @classroom = classroom
-    classroom.students.push(self) unless classroom.students.include?(self)
-  end
 end
