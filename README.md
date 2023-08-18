@@ -1,6 +1,6 @@
 <br>
 <div align='center'>
-	<h1>OOP school library</h1>
+	<h1>TDD Project</h1>
   </div>
 <a name="readme-top"></a>
 
@@ -19,10 +19,9 @@
 - [📝 License](#license)
 
 
-# 📖OOP school library <a name="about-project"></a>
+# TDD Project <a name="about-project"></a>
 
-**OOP school library** In this project I add unit tests to my codebase, specifically to my classes.
-
+**TDD Project** In this project, I implement a class with some methods, but I do it by doing test-driven development (TDD).
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
